@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 
 class PhoneInfo extends Component{
-	static defaultProps = {
-		data : []
+
+	handleRemove = () =>{
+		const {info, onRemove}  = this.props;
+		console.log(onRemove)
+		console.log(info)
+		onRemove(info.id);
 	}
 	render(){
 		const {name, phone, id}  = this.props.info;
@@ -15,6 +19,7 @@ class PhoneInfo extends Component{
 			<div style={style}>
 				<div><b>{name}</b></div>
 				<div>{phone}</div>
+				<button onClick={this.handleRemove}>삭제</button>
 			</div>
 		)
 	}
