@@ -13,6 +13,14 @@ class Myname extends Component{
 			[e.target.name] :e.target.value
 		})
 	}
+	handleSubmit = (e) =>{
+		e.preventDefault();
+		this.props.onCreate(this.state)
+		this.setState({
+		name:'',
+		phone:''
+	})
+	}
 	render(){
 		const name = "Sanghwan"
 		return (
@@ -21,7 +29,7 @@ class Myname extends Component{
 				<h1>
 					{this.props.englishName}
 				</h1>
-				<form>
+				<form onSubmit={this.handleSubmit}>
 				<input placeholder="이름" 
 				name="name"
 				onChange = {this.handleChange} 
@@ -32,6 +40,7 @@ class Myname extends Component{
 				onChange = {this.handleChange} 
 				value={this.state.phone}/>
 				{this.state.phone}
+				<button type="submit">등록</button>
 				</form>
 			</div>
 		)
