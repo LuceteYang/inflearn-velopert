@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 class Myname extends Component{
+	input = null;
 	static defaultProps= { //더 최신 문법 번들링하면 결국 밑의 코드와 같음
 		englishName:'영어이름'
 	}
@@ -19,7 +20,8 @@ class Myname extends Component{
 		this.setState({
 		name:'',
 		phone:''
-	})
+		})
+		this.input.focus();
 	}
 	render(){
 		const name = "Sanghwan"
@@ -30,9 +32,11 @@ class Myname extends Component{
 					{this.props.englishName}
 				</h1>
 				<form onSubmit={this.handleSubmit}>
+				{/*특정 돔에 직접적으로 접근해야하는 경우(크기를 가져오거나 높이를 가져와야한다거나 등등)*/}
 				<input placeholder="이름" 
 				name="name"
 				onChange = {this.handleChange} 
+				ref = {ref => this.input = ref}
 				value={this.state.name}/>
 				{this.state.name}
 				<input placeholder="전화번호" 

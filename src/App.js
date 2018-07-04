@@ -23,7 +23,13 @@ class App extends Component{
 				name:'호랑이',
 				phone:'010-0000-2323'
 			}
-		]
+		],
+		keyword:""
+	}
+	handleChange = (e) =>{
+		this.setState({
+			keyword : e.target.value
+		})
 	}
 	handleCreate = (data) =>{
 		const { information } = this.state;
@@ -63,7 +69,18 @@ class App extends Component{
 				<YourName name='Lucas'/>
 				<Counter />
 				{JSON.stringify(this.state.information)}
-				<PhoneInfoList data={this.state.information} onRemove={this.handleRemove} onUpdate={this.handleUpdate}/>
+				<input 
+				value={this.state.keyword}
+				onChange={this.handleChange}
+				placeholder = "검색"/>
+				<PhoneInfoList 
+				data={
+					this.state.information.filter(
+					info => info.name.indexOf(this.state.keyword)> -1)
+				} 
+				onRemove={this.handleRemove} 
+				onUpdate={this.handleUpdate}
+				/>
 			</Fragment>
 		)
 	}
