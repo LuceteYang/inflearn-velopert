@@ -34,6 +34,16 @@ class PhoneInfo extends Component{
 			[e.target.name] :e.target.value
 		})
 	}
+
+	shouldComponentUpdate(nextProps, nextState){
+		//shouldComponentUpdate 를 통한 최적화. 
+		//내부 컴포넌트가 한번더 렌더되도록 되어있음
+		//업데이트가 불필요할때는 렌더가 되지않도록해야함
+		if(this.state !==nextState){
+			return true;
+		}
+		return this.props.info !== nextProps.info;
+	}
 	render(){
 		const {name, phone, id}  = this.props.info;
 		const {editing}  = this.state;

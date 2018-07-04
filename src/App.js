@@ -5,10 +5,31 @@ import YourName from './YourName';
 import Counter from './Counter';
 import PhoneInfoList from './components/PhoneInfoList';
 class App extends Component{
-	id = 0;
+	id = 3;
+	state = {
+		information : [
+			{	
+				id:0,
+				name:'홍길동',
+				phone:'010-0000-3322'
+			},
+			{	
+				id:1,
+				name:'심청이',
+				phone:'010-0000-2142'
+			},
+			{	
+				id:2,
+				name:'호랑이',
+				phone:'010-0000-2323'
+			}
+		]
+	}
 	handleCreate = (data) =>{
 		const { information } = this.state;
 		this.setState({
+			//불변성을 왜 유지하는가
+			//push로 하게 되면 불변성을 유지하는게 아님
 			information: information.concat({
 				...data,
 				id: this.id++
@@ -34,9 +55,7 @@ class App extends Component{
 			})
 		})
 	}
-	state = {
-		information :[]
-	}
+
 	render(){
 		return (
 			<Fragment>	{/*Fragment 불필요한 겉 div를 뺄수있다.*/}
